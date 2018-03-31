@@ -2,18 +2,17 @@ import 'package:dazza/dazza.dart';
 import 'package:test/test.dart';
 
 main() {
-
   Parameters params;
 
   setUp(() {
     params = new Parameters.fromMap({
-      "name" : "Hello",
-      "colors" : [ "red", "green", "blue" ],
-      "someBool" : true,
-      "someInt" : 100,
-      "someFloat" : 1.5,
-      "someStringBool" : "true",
-      "someStringInt" : "400",
+      "name": "Hello",
+      "colors": ["red", "green", "blue"],
+      "someBool": true,
+      "someInt": 100,
+      "someFloat": 1.5,
+      "someStringBool": "true",
+      "someStringInt": "400",
     });
   });
 
@@ -43,7 +42,7 @@ main() {
       fail("Parameters object is not set up correctly");
     }
   });
-  
+
   test("Retrieve String parameter as String", () {
     final key = "name";
     if (params.has(key)) {
@@ -52,5 +51,4 @@ main() {
       fail("Parameters object is not set up correctly");
     }
   });
-
 }
