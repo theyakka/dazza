@@ -1,0 +1,14 @@
+name: dazza
+version: 1.0.0
+author: Yakka, LLC <hello@theyakka.com>
+description: A general routing library for Dart.
+homepage: https://github.com/theyakka/dazza
+
+environment:
+  sdk: '>= 1.0.0 <= 2.0.0'
+
+dependencies:
+  meta: ^1.1.2
+
+dev_dependencies:
+  test: ^0.12.33
