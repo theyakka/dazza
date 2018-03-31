@@ -8,10 +8,10 @@
  */
 part of dazza;
 
-/// The responder when a route is matched by the router. When a match is successfully 
-/// made, the [callback] handler function will be executed. [context] is an optional, 
-/// global variable where you can store a value that will be passed to the handler any 
-/// time it is executed. [context] is defined  (one time) when you define your route 
+/// The responder when a route is matched by the router. When a match is successfully
+/// made, the [callback] handler function will be executed. [context] is an optional,
+/// global variable where you can store a value that will be passed to the handler any
+/// time it is executed. [context] is defined  (one time) when you define your route
 /// definition so you shouldn't use it for values that need to change between invocations.
 class Handler {
   final HandlerFunc callback;
@@ -20,16 +20,16 @@ class Handler {
 }
 
 /// Function that will execute when a route is matched. If your route contains named
-/// parameters or query parameters (via a query string) then those values will be 
+/// parameters or query parameters (via a query string) then those values will be
 /// present in the parameters map. Parameters values will always be returned as a [List].
-/// 
+///
 /// The following built-in parameters will be present:
 ///  - [RouteParameter.path]: the path value that was matched (what you navigated to)
 ///  - [RouteParameter.routePath]: the path that was assigned to the [RouteDefinition]
 typedef dynamic HandlerFunc(Parameters parameters, dynamic context);
 
 /// Define a route for matching. The [path] value defines how your route will be matched
-/// and [handler] is the object that will respond when a match is found. 
+/// and [handler] is the object that will respond when a match is found.
 class RouteDefinition {
   // the route path format you want to match against
   String path;

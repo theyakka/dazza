@@ -33,7 +33,8 @@ class Parameters {
     }
   }
 
-  void addMap(Map<String, List<dynamic>> paramMap) => _parameters.addAll(paramMap);
+  void addMap(Map<String, List<dynamic>> paramMap) =>
+      _parameters.addAll(paramMap);
 
   /// Checks to see if the parameter exists.
   bool has(String key) => _parameters.containsKey(key);

@@ -24,7 +24,8 @@ class Router {
   /// Call the route matcher manually. If [path] matches a defined [RouteDefinition] then
   /// it's [Handler] will respond. This is useful for use-case where there is no central
   /// responder, or to allow you to build a centralized routing mechanism yourself.
-  MatchResult handle(String path, {Parameters parameters}) => _tree.matchRouteAndHandle(
+  MatchResult handle(String path, {Parameters parameters}) =>
+      _tree.matchRouteAndHandle(
         path,
         parameters: parameters,
         noMatchHandler: noMatchHandler,

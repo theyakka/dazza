@@ -79,7 +79,8 @@ class RouteTree {
     }
   }
 
-  MatchResult matchRouteAndHandle(String path, {Parameters parameters, Handler noMatchHandler}) {
+  MatchResult matchRouteAndHandle(String path,
+      {Parameters parameters, Handler noMatchHandler}) {
     MatchResult match = matchRoute(path, parameters: parameters);
     dynamic result;
     if (match.wasMatched) {
@@ -101,10 +102,12 @@ class RouteTree {
       components = ["/"];
     }
 
-    Map<RouteTreeNode, RouteTreeNodeMatch> nodeMatches = <RouteTreeNode, RouteTreeNodeMatch>{};
+    Map<RouteTreeNode, RouteTreeNodeMatch> nodeMatches =
+        <RouteTreeNode, RouteTreeNodeMatch>{};
     List<RouteTreeNode> nodesToCheck = _nodes;
     for (String checkComponent in components) {
-      Map<RouteTreeNode, RouteTreeNodeMatch> currentMatches = <RouteTreeNode, RouteTreeNodeMatch>{};
+      Map<RouteTreeNode, RouteTreeNodeMatch> currentMatches =
+          <RouteTreeNode, RouteTreeNodeMatch>{};
       List<RouteTreeNode> nextNodes = <RouteTreeNode>[];
       for (RouteTreeNode node in nodesToCheck) {
         String pathPart = checkComponent;
@@ -118,7 +121,8 @@ class RouteTree {
         if (isMatch) {
           RouteTreeNodeMatch parentMatch = nodeMatches[node.parent];
           final params = parentMatch?.parameters ?? new Parameters();
-          RouteTreeNodeMatch match = new RouteTreeNodeMatch(node: node, parameters: params);
+          RouteTreeNodeMatch match =
+              new RouteTreeNodeMatch(node: node, parameters: params);
           if (node.isParameter) {
             String paramKey = node.part.substring(1);
             match.parameters.add(paramKey, pathPart);
@@ -143,7 +147,9 @@ class RouteTree {
     if (matches.length > 0) {
       RouteTreeNodeMatch match = matches.first;
       RouteTreeNode nodeToUse = match.node;
-      if (nodeToUse != null && nodeToUse.routes != null && nodeToUse.routes.length > 0) {
+      if (nodeToUse != null &&
+          nodeToUse.routes != null &&
+          nodeToUse.routes.length > 0) {
         List<RouteDefinition> routes = nodeToUse.routes;
         RouteDefinition firstMatchedRoute = routes[0];
         MatchResult routeMatch = new MatchResult(
