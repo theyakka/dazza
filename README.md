@@ -9,9 +9,17 @@ be fast, yet flexible.
 
 # Features
 
+Dazza has only the coolest features:
+- Wildcard / named route parameters (e.g.: `/users/:id`)
+- Query string parameter support
+- Pass custom parameters when evaluating routes
+- Global context for route handlers (allows for immutable, shared values to be passed to each invocation)
+- Result value for handler calls
+- Easily extended for custom routing needs
+
 # Installing
 
-**Dazza (probably) requires Dart 2.0+.** Dazza was developed on the 2.0 (pre-release) version of Dart and has not been tested on previous versions. It probably works fine on 1.X as well.
+**Dazza will probably require Dart 2.0+.** Dazza was developed on the 2.0 (pre-release) version of Dart but, for now, it probably works fine on 1.X as well.
 
 To install, add the following line to the `dependencies` section of your `pubspec.yaml` file:
 
@@ -30,6 +38,44 @@ import 'package:dazza/dazza.dart';
 
 # Getting started
 
+To define routes you need a `Router` instance:
+
+```dart
+final router = new Router(
+  noMatchHandler: new Handler(callback: noMatchCallback),
+);
+```
+
+**NOTE:** Your `Router` instance should be stored somewhere where you can easily access it in multiple places as you will probably only ever want one `Router` instance per application.
+
+Now you can define your routes. Routes can take the form of regular routes or can contained named parameters. Named parameters start with a colon (:). For example, `/users/:id`. To define your routes:
+
+```dart
+router.addRoute(new RouteDefinition.withCallback("/users/:id", callback: usersRouteCallback));
+```
+
+Route callbacks are defined as functions, such as:
+
+```dart
+dynamic usersRouteCallback(Parameters parameters, dynamic context) {
+  int userId = parameters.firstInt("id");
+  ...
+  return userId;
+}
+```
+
+Or you can define them in-line if you need:
+
+```
+router.addRoute(
+  new RouteDefinition.withCallback("/users/:id",
+      callback: (Parameters parameters, dynamic context) {
+    int userId = parameters.firstInt("id");
+    ...
+    return userId;
+  }),
+);
+```
 
 # FAQ
 

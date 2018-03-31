@@ -16,6 +16,12 @@ main() {
         callback: userMatchCallback));
     router.addRoute(new RouteDefinition.withCallback("/users/list",
         callback: genericMatchCallback));
+    router.addRoute(
+      new RouteDefinition.withCallback("/test",
+          callback: (Parameters parameters, dynamic context) {
+        return 99;
+      }),
+    );
   });
 
   test("Match non-wildcard route", () {
@@ -55,6 +61,11 @@ main() {
     final expectedResult = "750";
     expect(router.handle("/users?expectedResult=$expectedResult").result,
         equals(expectedResult));
+  });
+
+  test("Match result from in-line callback definition", () {
+    final expectedResult = 99;
+    expect(router.handle("/test").result, equals(expectedResult));
   });
 }
 
