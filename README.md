@@ -66,7 +66,7 @@ dynamic usersRouteCallback(Parameters parameters, dynamic context) {
 
 Or you can define them in-line if you need:
 
-```
+```dart
 router.addRoute(
   new RouteDefinition.withCallback("/users/:id",
       callback: (Parameters parameters, dynamic context) {
