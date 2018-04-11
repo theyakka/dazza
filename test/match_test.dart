@@ -31,19 +31,21 @@ main() {
     );
   });
 
-  test("Match non-wildcard route", () {
+  test("Handler matches non-wildcard route", () {
     final expectedResult = 200;
     expect(
         router
-            .handle("/users",
-                parameters: new Parameters.fromMap({
-                  "expectedResult": [expectedResult],
-                }))
+            .handle(
+              "/users",
+              parameters: new Parameters.fromMap({
+                "expectedResult": [expectedResult],
+              }),
+            )
             .result,
         equals(expectedResult));
   });
 
-  test("Match wildcard route", () {
+  test("Handler matches wildcard route", () {
     final userId = "55";
     expect(router.handle("/users/$userId").result, equals(userId));
   });
@@ -99,6 +101,26 @@ main() {
     final expectedResult = "local value";
     expect(router.handle("/lcontext", context: expectedResult).result,
         equals(expectedResult));
+  });
+
+  test("Manual match fails to find non-defined route", () {
+    final result = router.match("/doesnotexist");
+    expect(result.matchType, equals(MatchStatus.noMatch));
+  });
+
+  test("Manual match finds defined route", () {
+    final result = router.match("/lcontext");
+    expect(result.matchType, equals(MatchStatus.match));
+  });
+
+  test("Manual match finds defined route with parameter", () {
+    final result = router.match("/users/55");
+    expect(result.matchType, equals(MatchStatus.match));
+  });
+
+  test("Manual match finds defined route and parameter is collected", () {
+    final result = router.match("/users/55");
+    expect(result.parameters.firstString("id"), equals("55"));
   });
 }
 
