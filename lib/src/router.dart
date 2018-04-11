@@ -21,13 +21,15 @@ class Router {
   /// Adds a [RouteDefinition] for matching.
   void addRoute(RouteDefinition definition) => _tree.addRoute(definition);
 
-  /// Call the route matcher manually. If [path] matches a defined [RouteDefinition] then
-  /// it's [Handler] will respond. This is useful for use-case where there is no central
-  /// responder, or to allow you to build a centralized routing mechanism yourself.
-  MatchResult handle(String path, {Parameters parameters}) =>
+  /// Call the route matcher. If [path] matches a defined [RouteDefinition] then
+  /// it's [Handler] will respond. If you pass a [context] value then it will be
+  /// passed along to the handler and any global [Handler.context] value will be
+  /// ignored.
+  MatchResult handle(String path, {Parameters parameters, dynamic context}) =>
       _tree.matchRouteAndHandle(
         path,
         parameters: parameters,
         noMatchHandler: noMatchHandler,
+        context: context,
       );
 }

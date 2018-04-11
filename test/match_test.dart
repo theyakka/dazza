@@ -1,21 +1,28 @@
 import 'package:dazza/dazza.dart';
 import 'package:test/test.dart';
 
+final _globalContextValue = 12345;
+
 main() {
   Router router;
 
   setUp(() {
     router = new Router(
-      noMatchHandler: new Handler(callback: noMatchCallback),
+      noMatchHandler: new Handler(callback: _noMatchCallback),
     );
     router.addRoute(new RouteDefinition.withCallback("/users",
-        callback: genericMatchCallback));
+        callback: _genericMatchCallback));
     router.addRoute(new RouteDefinition.withCallback("/users/profile",
-        callback: profileMatchCallback));
+        callback: _profileMatchCallback));
     router.addRoute(new RouteDefinition.withCallback("/users/:id",
-        callback: userMatchCallback));
+        callback: _userMatchCallback));
     router.addRoute(new RouteDefinition.withCallback("/users/list",
-        callback: genericMatchCallback));
+        callback: _genericMatchCallback));
+    router.addRoute(new RouteDefinition.withCallback("/gcontext",
+        callback: _contextCallback, context: _globalContextValue));
+    router.addRoute(new RouteDefinition.withCallback("/lcontext",
+        callback: _contextCallback));
+
     router.addRoute(
       new RouteDefinition.withCallback("/test",
           callback: (Parameters parameters, dynamic context) {
@@ -63,24 +70,49 @@ main() {
         equals(expectedResult));
   });
 
+  test("Match querystring parameter with passed parameters", () {
+    final expectedResult = "750";
+    expect(router.handle("/users?expectedResult=$expectedResult",
+        parameters: new Parameters.fromMap({
+          "item1" : "testing",
+          "item2" : "yakka",
+        }),
+    ).result, equals(expectedResult));
+  });
+
   test("Match result from in-line callback definition", () {
     final expectedResult = 99;
     expect(router.handle("/test").result, equals(expectedResult));
   });
+
+  test("Handler receives global context correctly", () {
+    final expectedResult = _globalContextValue;
+    expect(router.handle("/gcontext").result, equals(expectedResult));
+  });
+
+  test("Handler receives local context correctly", () {
+    final expectedResult = "local value";
+    expect(router.handle("/lcontext", context: expectedResult).result, equals(expectedResult));
+  });
+
 }
 
-dynamic genericMatchCallback(Parameters parameters, dynamic context) {
+dynamic _genericMatchCallback(Parameters parameters, dynamic context) {
   return parameters.first("expectedResult");
 }
 
-dynamic userMatchCallback(Parameters parameters, dynamic context) {
+dynamic _userMatchCallback(Parameters parameters, dynamic context) {
   return parameters.firstString("id");
 }
 
-dynamic profileMatchCallback(Parameters parameters, dynamic context) {
+dynamic _profileMatchCallback(Parameters parameters, dynamic context) {
   return "myProfile";
 }
 
-dynamic noMatchCallback(Parameters parameters, dynamic context) {
+dynamic _noMatchCallback(Parameters parameters, dynamic context) {
   return -1;
+}
+
+dynamic _contextCallback(Parameters parameters, dynamic context) {
+  return context;
 }

@@ -80,19 +80,19 @@ class RouteTree {
   }
 
   MatchResult matchRouteAndHandle(String path,
-      {Parameters parameters, Handler noMatchHandler}) {
-    MatchResult match = matchRoute(path, parameters: parameters);
+      {Parameters parameters, Handler noMatchHandler, dynamic context}) {
+    MatchResult match = matchRoute(path, parameters: parameters, context: context);
     dynamic result;
     if (match.wasMatched) {
-      result = match.route.handler.callback(match.parameters, null);
+      result = match.route.handler.callback(match.parameters, match.context);
     } else if (noMatchHandler != null) {
-      result = noMatchHandler.callback(match.parameters, null);
+      result = noMatchHandler.callback(match.parameters, match.context);
     }
     match.result = result;
     return match;
   }
 
-  MatchResult matchRoute(String path, {Parameters parameters}) {
+  MatchResult matchRoute(String path, {Parameters parameters, dynamic context}) {
     String usePath = path;
     if (usePath.startsWith("/")) {
       usePath = path.substring(1);
@@ -130,7 +130,6 @@ class RouteTree {
           if (queryMap != null) {
             match.parameters.addMap(queryMap);
           }
-//          print("matched: ${node.part}, isParam: ${node.isParameter()}, params: ${match.parameters}");
           currentMatches[node] = match;
           if (node.nodes != null) {
             nextNodes.addAll(node.nodes);
@@ -140,7 +139,7 @@ class RouteTree {
       nodeMatches = currentMatches;
       nodesToCheck = nextNodes;
       if (currentMatches.values.length == 0) {
-        return new MatchResult.noMatch(parameters: parameters);
+        return new MatchResult.noMatch(parameters: parameters, context: context);
       }
     }
     List<RouteTreeNodeMatch> matches = nodeMatches.values.toList();
@@ -155,13 +154,13 @@ class RouteTree {
         MatchResult routeMatch = new MatchResult(
           route: firstMatchedRoute,
           parameters: match.parameters,
-          context: firstMatchedRoute.handler.context,
+          context: context ?? firstMatchedRoute.handler.context,
         );
         routeMatch.parameters.addAll(parameters);
         return routeMatch;
       }
     }
-    return new MatchResult.noMatch(parameters: parameters);
+    return new MatchResult.noMatch(parameters: parameters, context: context);
   }
 
   void printTree() => _printSubTree();
