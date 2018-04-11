@@ -91,6 +91,11 @@ Give it a try and if you like it, let us know! Either way, we love feedback.
 
 The code here is derived from the code that was written for Fluro (https://github.com/goposse/fluro). Fluro has been battle tested in the hamilton app in production and is used by millions of people. Dazza is also in use serving Firebase Functions in other apps. That said, code is always evolving. We plan to keep on using it in production but we also plan to keep on improving it. If you find a bug, let us know!
 
+## What are some projects that use this?
+
+The following projects use dazza:
+- Cumulus: Firebase logic made easy (by Yakka). [Link](https://github.com/theyakka/cumulus)
+
 ## Who the f*ck is Yakka?
 
 Yakka is the premier Flutter agency and a kick-ass product company. We focus on the work. Our stuff is at [http://theyakka.com](http://theyakka.com). Go check it out.
