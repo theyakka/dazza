@@ -72,12 +72,17 @@ main() {
 
   test("Match querystring parameter with passed parameters", () {
     final expectedResult = "750";
-    expect(router.handle("/users?expectedResult=$expectedResult",
-        parameters: new Parameters.fromMap({
-          "item1" : "testing",
-          "item2" : "yakka",
-        }),
-    ).result, equals(expectedResult));
+    expect(
+        router
+            .handle(
+              "/users?expectedResult=$expectedResult",
+              parameters: new Parameters.fromMap({
+                "item1": "testing",
+                "item2": "yakka",
+              }),
+            )
+            .result,
+        equals(expectedResult));
   });
 
   test("Match result from in-line callback definition", () {
@@ -92,9 +97,9 @@ main() {
 
   test("Handler receives local context correctly", () {
     final expectedResult = "local value";
-    expect(router.handle("/lcontext", context: expectedResult).result, equals(expectedResult));
+    expect(router.handle("/lcontext", context: expectedResult).result,
+        equals(expectedResult));
   });
-
 }
 
 dynamic _genericMatchCallback(Parameters parameters, dynamic context) {

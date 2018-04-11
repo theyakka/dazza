@@ -81,7 +81,8 @@ class RouteTree {
 
   MatchResult matchRouteAndHandle(String path,
       {Parameters parameters, Handler noMatchHandler, dynamic context}) {
-    MatchResult match = matchRoute(path, parameters: parameters, context: context);
+    MatchResult match =
+        matchRoute(path, parameters: parameters, context: context);
     dynamic result;
     if (match.wasMatched) {
       result = match.route.handler.callback(match.parameters, match.context);
@@ -92,7 +93,8 @@ class RouteTree {
     return match;
   }
 
-  MatchResult matchRoute(String path, {Parameters parameters, dynamic context}) {
+  MatchResult matchRoute(String path,
+      {Parameters parameters, dynamic context}) {
     String usePath = path;
     if (usePath.startsWith("/")) {
       usePath = path.substring(1);
@@ -139,7 +141,8 @@ class RouteTree {
       nodeMatches = currentMatches;
       nodesToCheck = nextNodes;
       if (currentMatches.values.length == 0) {
-        return new MatchResult.noMatch(parameters: parameters, context: context);
+        return new MatchResult.noMatch(
+            parameters: parameters, context: context);
       }
     }
     List<RouteTreeNodeMatch> matches = nodeMatches.values.toList();
