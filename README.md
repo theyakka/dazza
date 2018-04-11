@@ -19,7 +19,7 @@ Dazza has only the coolest features:
 
 # Installing
 
-**Dazza will probably require Dart 2.0+.** Dazza was developed on the 2.0 (pre-release) version of Dart but, for now, it probably works fine on 1.X as well.
+**Dazza will probably require Dart 2.0+.** Dazza was developed on the 2.0 (pre-release) version of Dart but, for now, it probably works fine on 1.23+ as well.
 
 To install, add the following line to the `dependencies` section of your `pubspec.yaml` file:
 
