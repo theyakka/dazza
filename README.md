@@ -6,6 +6,7 @@ be fast, yet flexible.
 
 [![Build Status](https://travis-ci.org/theyakka/dazza.svg?branch=master)](https://travis-ci.org/theyakka/dazza)
 [![Dart Version](https://img.shields.io/badge/Dart-2.0+-lightgrey.svg)](https://dartlang.org/)
+[![Coverage](https://codecov.io/gh/theyakka/dazza/branch/master/graph/badge.svg)](https://codecov.io/gh/theyakka/dazza)
 
 # Features
 
