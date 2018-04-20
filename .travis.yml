@@ -1,13 +1,17 @@
 language: dart
 dart:
+  - dev
   - stable
 
-script:
-  - pub run dart_dev format --check
-  - pub run dart_dev analyze
-  - pub run dart_dev test -p vm
-  - pub run dart_dev coverage --no-html
-  - bash <(curl -s https://codecov.io/bash) -f coverage/coverage.lcov
+dart_task:
+  - test: --platform vm
+  - dartanalyzer
+  - dartfmt
+  - coverage: --no-html
 
 branches:
   only: [master]
+
+cache:
+ directories:
+   - $HOME/.pub-cache
