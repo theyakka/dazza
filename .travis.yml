@@ -1,6 +1,5 @@
 language: dart
 dart:
-  - dev
   - stable
 
 script:
@@ -13,7 +12,3 @@ script:
 
 branches:
   only: [master]
-
-cache:
- directories:
-   - $HOME/.pub-cache
