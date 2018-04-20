@@ -37,9 +37,11 @@ class RouteDefinition {
   Handler handler;
 
   RouteDefinition(this.path, {@required this.handler});
-  RouteDefinition.withCallback(this.path,
-      {@required HandlerFunc callback, dynamic context})
-      : handler = new Handler(callback: callback, context: context);
+  RouteDefinition.withCallback(
+    this.path, {
+    @required HandlerFunc callback,
+    dynamic context,
+  }) : handler = new Handler(callback: callback, context: context);
 }
 
 ///
