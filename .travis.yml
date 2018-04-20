@@ -3,11 +3,11 @@ dart:
   - dev
   - stable
 
-dart_task:
-  - test: --platform vm
-  - dartanalyzer
-  - dartfmt
-  - coverage: --no-html
+script:
+  - pub run dart_dev format --check
+  - pub run dart_dev analyze
+  - pub run dart_dev test
+  - pub run dart_dev coverage --no-html
 
 branches:
   only: [master]
