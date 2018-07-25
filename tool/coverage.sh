@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-PORT=92552
+PORT=8111
 
 echo "Collecting coverage on port $PORT..."
 dart \
