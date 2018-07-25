@@ -5,6 +5,9 @@
 build/
 pubspec.lock
 
+# Project
+/_coverage
+
 # IntelliJ, etc
 # User-specific stuff
 .idea/**/workspace.xml

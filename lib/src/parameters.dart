@@ -84,7 +84,11 @@ class Parameters {
     if (val is int) {
       return val;
     } else if (val is String) {
-      return int.parse(_firstValueIfExists(key), onError: (_) => null);
+      try {
+        return int.tryParse(_firstValueIfExists(key));
+      } catch (ex) {
+        return null;
+      }
     }
     return null;
   }
