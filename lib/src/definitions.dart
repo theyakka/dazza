@@ -1,7 +1,7 @@
 /*
  * Dazza
  * Created by Yakka
- * http://theyakka.com
+ * https://theyakka.com
  *
  * Copyright (c) 2018 Yakka, LLC. All rights reserved.
  * See LICENSE for distribution and usage details.
