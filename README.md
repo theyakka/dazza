@@ -101,7 +101,7 @@ The following projects use dazza:
 
 ## Credits
 
-Dazza is sponsored, owned and maintained by [Yakka LLC](http://theyakka.com). Feel free to reach out with suggestions, ideas or to say hey.
+Dazza is sponsored, owned and maintained by [Yakka LLC](https://theyakka.com). Feel free to reach out with suggestions, ideas or to say hey.
 
 ### Security
 
