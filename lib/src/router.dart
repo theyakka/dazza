@@ -6,7 +6,10 @@
  * Copyright (c) 2018 Yakka, LLC. All rights reserved.
  * See LICENSE for distribution and usage details.
  */
-part of dazza;
+
+import 'definitions.dart';
+import 'parameters.dart';
+import 'tree.dart';
 
 class Router {
   static final String rootPath = "/";
@@ -41,4 +44,7 @@ class Router {
         parameters: parameters,
         context: context,
       );
+
+  /// Prints debugging information about the [RouteTree]
+  void printTree() => _tree.printTree();
 }
