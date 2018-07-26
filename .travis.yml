@@ -3,11 +3,9 @@ dart:
   - dev
 
 script:
-  - pub run dart_dev format --check
-  - pub run dart_dev analyze
-  - pub run dart_dev test
-  - pub run dart_dev coverage --no-html
-  - bash <(curl -s https://codecov.io/bash) -f coverage/coverage.lcov
+  - tool/analyze.sh
+  - tool/coverage.sh
+  - bash <(curl -s https://codecov.io/bash) -f _coverage/coverage.lcov
 
 branches:
   only: [master]
@@ -15,3 +13,6 @@ branches:
 cache:
  directories:
    - $HOME/.pub-cache
+
+env:
+  - DARTANALYZER_FLAGS=--fatal-warnings

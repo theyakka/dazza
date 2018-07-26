@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 final _globalContextValue = 12345;
 
-main() {
+void main() {
   Router router;
 
   setUp(() {

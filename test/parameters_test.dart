@@ -1,7 +1,7 @@
 import 'package:dazza/dazza.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   Parameters params;
 
   setUp(() {
