@@ -3,7 +3,7 @@ set -e
 PORT=8111
 
 echo "Collecting coverage on port $PORT..."
-dart \
+dart --disable-service-auth-codes \
     --enable-vm-service=$PORT \
     --pause-isolates-on-exit \
     test/test_all.dart &
