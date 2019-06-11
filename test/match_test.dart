@@ -111,17 +111,17 @@ void main() {
 
   test('Manual match fails to find non-defined route', () {
     final result = router.match('/doesnotexist');
-    expect(result.matchStatus, equals(MatchStatus.noMatch));
+    expect(result.matchStatus, equals(MatchStatus.notMatched));
   });
 
   test('Manual match finds defined route', () {
     final result = router.match('/lcontext');
-    expect(result.matchStatus, equals(MatchStatus.match));
+    expect(result.matchStatus, equals(MatchStatus.matched));
   });
 
   test('Manual match finds defined route with parameter', () {
     final result = router.match('/users/55');
-    expect(result.matchStatus, equals(MatchStatus.match));
+    expect(result.matchStatus, equals(MatchStatus.matched));
   });
 
   test('Manual match finds defined route and parameter is collected', () {

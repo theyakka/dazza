@@ -7,8 +7,14 @@
  * See LICENSE for distribution and usage details.
  */
 
+import 'package:dazza/src/filter.dart';
+
+import 'definitions.dart';
 import 'router.dart';
 
 /// Sub-class this class to listen to [Router] events.
-/// TODO - expand
-abstract class LifecycleObserver {}
+abstract class LifecycleObserver {
+  void willMatch(String path) {}
+  void didMatch(String path, MatchStatus status) {}
+  void didFilter(String path, FilterResult result) {}
+}

@@ -7,8 +7,6 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'dart:collection';
-
 import 'conversions.dart';
 import 'parameters.dart';
 import 'value_store.dart';

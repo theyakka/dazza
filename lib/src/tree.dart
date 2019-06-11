@@ -16,10 +16,8 @@ import 'parameters.dart';
 import 'tree_definitions.dart';
 
 /// Used for storing and matching
-/// TODO
 class RouteTree {
   /// The current route tree nodes. These are created
-  /// TODO
   final List<RouteTreeNode> _nodes = <RouteTreeNode>[];
 
   // Fields
