@@ -3,7 +3,7 @@
  * Created by Yakka
  * https://theyakka.com
  *
- * Copyright (c) 2019 Yakka LLC. All rights reserved.
+ * Copyright (c) 2020 Yakka LLC. All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -30,7 +30,7 @@ class ValueStore<KT, VT> {
   /// Literal accessor to get the value for a key.
   VT operator [](KT key) => _values[key];
 
-  /// Literal setter to set the value for a key
+  /// Literal to set the value for a key
   void operator []=(KT key, VT value) => _values[key] = value;
 
   /// Accessor to get the value for a key.
@@ -48,14 +48,14 @@ class ValueStore<KT, VT> {
   /// Overwrite the value for a key.
   void set(KT key, VT value) => _values[key] = value;
 
-  /// Overwrite all of the values with the values from another [ValueStore].
+  /// Overwrite all the values with the values from another [ValueStore].
   void setAll(ValueStore<KT, VT> otherStore) {
     if (otherStore != null) {
       _values.addAll(otherStore._values);
     }
   }
 
-  /// Overwrite all of the values with the values from a [Map].
+  /// Overwrite all the values with the values from a [Map].
   void setMap(Map<KT, VT> valueMap) => _values.addAll(valueMap);
 
   /// Remove the value for a key.
